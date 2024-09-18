@@ -2,7 +2,7 @@ pipeline {
     agent any 
     tools {
         jdk 'jdk'
-        nodejs 'nodeja'
+        nodejs 'nodejs'
     }
     environment  {
         SCANNER_HOME=tool 'sonar-scanner'
@@ -28,7 +28,7 @@ pipeline {
                     withSonarQubeEnv('sonar-server') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
                         -Dsonar.projectName=devops-frontend \
-                        -Dsonar.projectKey=devops-frontend '''
+                        -Dsonar.projectKey=frontend '''
                     }
                 }
             }
