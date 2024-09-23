@@ -22,13 +22,13 @@ pipeline {
                git branch: 'main', url: 'https://github.com/kote-9000/3-tier-aws-devops-project.git'
             }
         }
-        stage('Sonarqube Analysis') {
+         stage('Sonarqube Analysis') {
             steps {
                 dir('client') {
                     withSonarQubeEnv('sonar-server') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=devops-frontend \
-                        -Dsonar.projectKey=frontend '''
+                        -Dsonar.projectName=three-tier-frontend \
+                        -Dsonar.projectKey=three-tier-frontend '''
                     }
                 }
             }
