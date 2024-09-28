@@ -33,6 +33,16 @@ pipeline {
                 }
             }
         }
+          stage('Dependency Check') {
+            steps {
+                dir('client') {
+                    // Run OWASP Dependency-Check
+                    sh 'dependency-check.sh --project three-tier-frontend --out . --scan .'
+                    // Assuming you want to fail the build if vulnerabilities are found
+                    sh 'grep -q "VULNERABILITIES" dependency-check-report.html && exit 1 || exit 0'
+                }
+            }
+        }
         stage('Quality Check') {
             steps {
                 script {
